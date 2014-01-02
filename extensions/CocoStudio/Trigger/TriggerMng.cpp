@@ -25,6 +25,9 @@ THE SOFTWARE.
 #include "TriggerMng.h"
 #include "TriggerObj.h"
 #include "TriggerBase.h"
+#include "../Json/rapidjson/prettywriter.h"
+#include "../Json/rapidjson/filestream.h"
+#include "../Json/rapidjson/stringbuffer.h"
 
 NS_CC_EXT_BEGIN
 
@@ -65,32 +68,48 @@ TriggerMng* TriggerMng::getInstance()
 
 void TriggerMng::destroyInstance()
 {
+    removeAll();
     CC_SAFE_DELETE(_sharedTriggerMng);
 }
 
 void TriggerMng::parse(const rapidjson::Value &root)
 {
     CCLOG("%s", triggerMngVersion());
-    do {
-          int count = DICTOOL->getArrayCount_json(root, "Triggers");
-          for (int i = 0; i < count; ++i)
-          {
-                const rapidjson::Value &subDict = DICTOOL->getSubDictionary_json(root, "Triggers", i);
-                TriggerObj *obj = TriggerObj::create();
-                obj->serialize(subDict);
-				std::vector<int> &_vInt = obj->getEvents();
-				for (std::vector<int>::iterator iter = _vInt.begin(); iter != _vInt.end(); ++iter)
-				{
-					add((unsigned int)(*iter), obj);
-				}
-				if (_triggerObjs != NULL)
-				{
-					_triggerObjs->setObject(obj, obj->getId());
-				}
-				
-          }
-        
-    } while (0);
+    int count = DICTOOL->getArrayCount_json(root, "Triggers");
+    
+    CCScriptEngineProtocol* engine = CCScriptEngineManager::sharedManager()->getScriptEngine();
+    bool useBindings = engine != NULL;    
+    
+    if (useBindings)
+    {
+        if (count > 0 )
+        {
+            const rapidjson::Value& subDict = DICTOOL->getSubDictionary_json(root, "Triggers");
+            rapidjson::StringBuffer buffer;
+            rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+            subDict.Accept(writer);
+            
+            engine->parseConfig(CCScriptEngineProtocol::COCOSTUDIO, buffer.GetString());
+        }
+    }
+    else
+    {
+        for (int i = 0; i < count; ++i)
+        {
+            const rapidjson::Value &subDict = DICTOOL->getSubDictionary_json(root, "Triggers", i);
+            TriggerObj *obj = TriggerObj::create();
+            obj->serialize(subDict);
+            std::vector<int> &_vInt = obj->getEvents();
+            for (std::vector<int>::iterator iter = _vInt.begin(); iter != _vInt.end(); ++iter)
+            {
+                add((unsigned int)(*iter), obj);
+            }
+            if (_triggerObjs != NULL)
+            {
+                _triggerObjs->setObject(obj, obj->getId());
+            }
+        }
+    }
 }
 
 CCArray* TriggerMng::get(unsigned int event) const
@@ -258,13 +277,13 @@ void TriggerMng::addArmatureMovementCallBack(CCArmature *pAr, CCObject *pTarget,
 	{
 		amd = new ArmatureMovementDispatcher();
 		pAr->getAnimation()->setMovementEventCallFunc(amd, movementEvent_selector(ArmatureMovementDispatcher::animationEvent));
-		amd->addAnnimationEventCallBack(pTarget, mecf);
+		amd->addAnimationEventCallBack(pTarget, mecf);
 		_movementDispatches->insert(std::map<CCArmature*, ArmatureMovementDispatcher*>::value_type(pAr, amd));
 	}
 	else
 	{
 		amd = iter->second;
-		amd->addAnnimationEventCallBack(pTarget, mecf);
+		amd->addAnimationEventCallBack(pTarget, mecf);
 	}
 }
 
@@ -313,6 +332,7 @@ void TriggerMng::removeAllArmatureMovementCallBack()
 	while (iter != _movementDispatches->end())
 	{
 		removeArmatureAllMovementCallBack(iter->first);
+        ++iter;
 	}
 	_movementDispatches->clear();
 }
@@ -337,7 +357,7 @@ ArmatureMovementDispatcher::~ArmatureMovementDispatcher(void)
 	 }
  }
 
-  void ArmatureMovementDispatcher::addAnnimationEventCallBack(CCObject *pTarget, SEL_MovementEventCallFunc mecf)
+  void ArmatureMovementDispatcher::addAnimationEventCallBack(CCObject *pTarget, SEL_MovementEventCallFunc mecf)
   {
 	  _mapEventAnimation->insert(std::map<CCObject*, SEL_MovementEventCallFunc>::value_type(pTarget, mecf));
   }

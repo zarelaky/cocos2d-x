@@ -404,11 +404,10 @@ NS_CC_EXT_BEGIN
                 }
 				else if(comName != NULL && strcmp(comName, "GUIComponent") == 0)
 				{
-					cocos2d::extension::UILayer *pLayer = cocos2d::extension::UILayer::create();
-                    pLayer->scheduleUpdate();
-                    UIWidget* widget = cocos2d::extension::GUIReader::shareReader()->widgetFromJsonFile(pPath.c_str());
-					pLayer->addWidget(widget);
-					CCComRender *pRender = CCComRender::create(pLayer, "GUIComponent");
+                    cocos2d::gui::TouchGroup* tg = cocos2d::gui::TouchGroup::create();
+                    cocos2d::gui::Widget* widget = cocos2d::extension::GUIReader::shareReader()->widgetFromJsonFile(pPath.c_str());
+                    tg->addWidget(widget);
+					CCComRender *pRender = CCComRender::create(tg, "GUIComponent");
 					if (pComName != NULL)
 					{
                         pRender->setName(pComName);
@@ -416,7 +415,7 @@ NS_CC_EXT_BEGIN
 					gb->addComponent(pRender);
 					if (_pListener && _pfnSelector)
 					{
-						(_pListener->*_pfnSelector)(pLayer, (void*)(&subDict));
+						(_pListener->*_pfnSelector)(tg, (void*)(&subDict));
 					}
 				}
             }
@@ -493,13 +492,13 @@ NS_CC_EXT_BEGIN
 	}
 
     void SceneReader::purgeSceneReader()
-    {
-		CC_SAFE_DELETE(_sharedReader);
+    {		
 		cocos2d::extension::DictionaryHelper::shareHelper()->purgeDictionaryHelper();
 		TriggerMng::getInstance()->destroyInstance();
 		_pfnSelector = NULL;
-        CocosDenshion::SimpleAudioEngine::sharedEngine()->end();
-        
+		_pListener = NULL;
+		CocosDenshion::SimpleAudioEngine::sharedEngine()->end();
+		CC_SAFE_DELETE(_sharedReader);
     }
 
 NS_CC_EXT_END
