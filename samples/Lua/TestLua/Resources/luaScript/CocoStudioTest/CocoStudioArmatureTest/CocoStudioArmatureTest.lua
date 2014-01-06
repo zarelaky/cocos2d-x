@@ -132,8 +132,13 @@ function ArmatureTestLayer.create()
     if nil ~= layer then
         layer:createMenu()
         layer:createToExtensionMenu()
-        layer:onEnter()
         layer:creatTitleAndSubTitle(armatureSceneIdx)
+        local function onNodeEvent(event)
+            if "enter" == event then
+                layer:onEnter()
+            end
+        end
+        layer:registerScriptHandler(onNodeEvent)
     end    
 
     return layer
@@ -285,7 +290,12 @@ function TestAsynchronousLoading.create()
     if nil ~= layer then
         layer:createMenu()
         layer:createToExtensionMenu()
-        layer:onEnter()
+        local function onNodeEvent(event)
+            if "enter" == event then
+                layer:onEnter()
+            end
+        end
+        layer:registerScriptHandler(onNodeEvent)
     end 
 
     return layer
@@ -318,8 +328,13 @@ function TestDirectLoading.create()
     if nil ~= layer then
         layer:createMenu()
         layer:createToExtensionMenu()
-        layer:onEnter()
         layer:creatTitleAndSubTitle(armatureSceneIdx)
+        local function onNodeEvent(event)
+            if "enter" == event then
+                layer:onEnter()
+            end
+        end
+        layer:registerScriptHandler(onNodeEvent)
     end 
     return layer
 end
@@ -353,8 +368,13 @@ function TestCSWithSkeleton.create()
     if nil ~= layer then
         layer:createMenu()
         layer:createToExtensionMenu()
-        layer:onEnter()
         layer:creatTitleAndSubTitle(armatureSceneIdx)
+        local function onNodeEvent(event)
+            if "enter" == event then
+                layer:onEnter()
+            end
+        end
+        layer:registerScriptHandler(onNodeEvent)
     end 
 
     return layer
@@ -388,8 +408,13 @@ function TestDragonBones20.create()
     if nil ~= layer then
         layer:createMenu()
         layer:createToExtensionMenu()
-        layer:onEnter()
         layer:creatTitleAndSubTitle(armatureSceneIdx)
+        local function onNodeEvent(event)
+            if "enter" == event then
+                layer:onEnter()
+            end
+        end
+        layer:registerScriptHandler(onNodeEvent)
     end 
     return layer   
 end
@@ -489,7 +514,12 @@ function TestPerformance.create()
         layer:createMenu()
         layer:createToExtensionMenu()
         layer:creatTitleAndSubTitle(armatureSceneIdx)
-        layer:onEnter()
+        local function onNodeEvent(event)
+            if "enter" == event then
+                layer:onEnter()
+            end
+        end
+        layer:registerScriptHandler(onNodeEvent)
     end 
     return layer   
 end
@@ -568,7 +598,12 @@ function TestPerformanceBatchNode.create()
         layer:createMenu()
         layer:createToExtensionMenu()
         layer:creatTitleAndSubTitle(armatureSceneIdx)
-        layer:onEnter()
+        local function onNodeEvent(event)
+            if "enter" == event then
+                layer:onEnter()
+            end
+        end
+        layer:registerScriptHandler(onNodeEvent)
     end 
     return layer   
 end
@@ -626,8 +661,13 @@ function TestChangeZorder.create()
     if nil ~= layer then
         layer:createMenu()
         layer:createToExtensionMenu()
-        layer:onEnter()
         layer:creatTitleAndSubTitle(armatureSceneIdx)
+        local function onNodeEvent(event)
+            if "enter" == event then
+                layer:onEnter()
+            end
+        end
+        layer:registerScriptHandler(onNodeEvent)
     end 
     return layer   
 end
@@ -697,8 +737,13 @@ function TestAnimationEvent.create()
     if nil ~= layer then
         layer:createMenu()
         layer:createToExtensionMenu()
-        layer:onEnter()
         layer:creatTitleAndSubTitle(armatureSceneIdx)
+        local function onNodeEvent(event)
+            if "enter" == event then
+                layer:onEnter()
+            end
+        end
+        layer:registerScriptHandler(onNodeEvent)
     end 
     return layer   
 end
@@ -759,7 +804,12 @@ function TestFrameEvent.create()
         layer:createMenu()
         layer:createToExtensionMenu()
         layer:creatTitleAndSubTitle(armatureSceneIdx)
-        layer:onEnter()
+        local function onNodeEvent(event)
+            if "enter" == event then
+                layer:onEnter()
+            end
+        end
+        layer:registerScriptHandler(onNodeEvent)
     end 
     return layer   
 end
@@ -794,7 +844,7 @@ function TestParticleDisplay:onEnter()
 
     local bone  = CCBone:create("p1")
     bone:addDisplay(p1, 0)
-    bone:changeDisplayByIndex(0, true)
+    bone:changeDisplayWithIndex(0, true)
     bone:setIgnoreMovementBoneData(true)
     bone:setZOrder(100)
     bone:setScale(1.2)
@@ -802,7 +852,7 @@ function TestParticleDisplay:onEnter()
     
     bone  = CCBone:create("p2")
     bone:addDisplay(p2, 0)
-    bone:changeDisplayByIndex(0, true)
+    bone:changeDisplayWithIndex(0, true)
     bone:setIgnoreMovementBoneData(true)
     bone:setZOrder(100)
     bone:setScale(1.2)
@@ -829,8 +879,13 @@ function TestParticleDisplay.create()
     if nil ~= layer then
         layer:createMenu()
         layer:createToExtensionMenu()
-        layer:onEnter()
         layer:creatTitleAndSubTitle(armatureSceneIdx)
+        local function onNodeEvent(event)
+            if "enter" == event then
+                layer:onEnter()
+            end
+        end
+        layer:registerScriptHandler(onNodeEvent)
     end 
 
     return layer   
@@ -880,7 +935,7 @@ function TestUseMutiplePicture:onEnter()
 
     local function onTouchBegan(x, y)
         self.displayIndex = (self.displayIndex + 1) % (table.getn(weapon) - 1)
-        self.armature:getBone("weapon"):changeDisplayByIndex(self.displayIndex, true)
+        self.armature:getBone("weapon"):changeDisplayWithIndex(self.displayIndex, true)
         return false
     end
 
@@ -899,8 +954,13 @@ function TestUseMutiplePicture.create()
     if nil ~= layer then
         layer:createMenu()
         layer:createToExtensionMenu()
-        layer:onEnter()
         layer:creatTitleAndSubTitle(armatureSceneIdx)
+        local function onNodeEvent(event)
+            if "enter" == event then
+                layer:onEnter()
+            end
+        end
+        layer:registerScriptHandler(onNodeEvent)
     end 
 
     return layer   
@@ -942,8 +1002,13 @@ function TestAnchorPoint.create()
     if nil ~= layer then
         layer:createMenu()
         layer:createToExtensionMenu()
-        layer:onEnter()
         layer:creatTitleAndSubTitle(armatureSceneIdx)
+        local function onNodeEvent(event)
+            if "enter" == event then
+                layer:onEnter()
+            end
+        end
+        layer:registerScriptHandler(onNodeEvent)
     end 
 
     return layer
@@ -997,8 +1062,13 @@ function TestArmatureNesting.create()
     if nil ~= layer then
         layer:createMenu()
         layer:createToExtensionMenu()
-        layer:onEnter()
         layer:creatTitleAndSubTitle(armatureSceneIdx)
+        local function onNodeEvent(event)
+            if "enter" == event then
+                layer:onEnter()
+            end
+        end
+        layer:registerScriptHandler(onNodeEvent)
     end 
 
     return layer 
@@ -1037,7 +1107,7 @@ function Hero:changeMount(armature)
         self:removeFromParentAndCleanup(false)
         local bone = armature:getBone("hero")
         bone:addDisplay(self, 0)
-        bone:changeDisplayByIndex(0, true)
+        bone:changeDisplayWithIndex(0, true)
         bone:setIgnoreMovementBoneData(true)
         self:setPosition(ccp(0,0))
         self:playWithIndex(1)
@@ -1161,7 +1231,12 @@ function TestArmatureNesting2.create()
         layer:createMenu()
         layer:createToExtensionMenu()
         layer:creatTitleAndSubTitle(armatureSceneIdx)
-        layer:onEnter()
+        local function onNodeEvent(event)
+            if "enter" == event then
+                layer:onEnter()
+            end
+        end
+        layer:registerScriptHandler(onNodeEvent)
     end 
 
     return layer 
