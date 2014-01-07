@@ -140,13 +140,11 @@ void Label::setScale(float fScale)
 void Label::setScaleX(float fScaleX)
 {
     Widget::setScaleX(fScaleX);
-    _normalScaleValueX = fScaleX;
 }
     
 void Label::setScaleY(float fScaleY)
 {
     Widget::setScaleY(fScaleY);
-    _normalScaleValueY = fScaleY;
 }
 
 bool Label::isTouchScaleChangeEnabled()
@@ -169,6 +167,8 @@ void Label::onPressStateChangedToPressed()
     {
         return;
     }
+    _normalScaleValueX = getScaleX();
+    _normalScaleValueY = getScaleY();
     clickScale(_normalScaleValueX + _onSelectedScaleOffset, _normalScaleValueY + _onSelectedScaleOffset);
 }
 
@@ -267,6 +267,9 @@ void Label::copySpecialProperties(Widget *widget)
         setFontSize(label->_labelRenderer->getFontSize());
         setText(label->getStringValue());
         setTouchScaleChangeEnabled(label->_touchScaleChangeEnabled);
+        setTextHorizontalAlignment(label->_labelRenderer->getHorizontalAlignment());
+        setTextVerticalAlignment(label->_labelRenderer->getVerticalAlignment());
+        setTextAreaSize(label->_labelRenderer->getDimensions());
     }
 }
 
