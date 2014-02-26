@@ -6,7 +6,7 @@
 #include "editor-support/cocostudio/CCSGUIReader.h"
 #include "CocosGUIScene.h"
 
-using namespace gui;
+using namespace ui;
 
 UIScene::UIScene()
 : _sceneTitle(nullptr)
@@ -37,9 +37,9 @@ bool UIScene::init()
         
         Layout* root = static_cast<Layout*>(_uiLayer->getChildByTag(81));
         
-        _sceneTitle = dynamic_cast<gui::Text*>(root->getChildByName("UItest"));
+        _sceneTitle = dynamic_cast<ui::Text*>(root->getChildByName("UItest"));
         
-        gui::Text* back_label = dynamic_cast<gui::Text*>(root->getChildByName("back"));
+        ui::Text* back_label = dynamic_cast<ui::Text*>(root->getChildByName("back"));
         back_label->addTouchEventListener(this, toucheventselector(UIScene::toCocosGUITestScene));
         
         Button* left_button = dynamic_cast<Button*>(root->getChildByName("left_Button"));
@@ -56,7 +56,7 @@ bool UIScene::init()
     return false;
 }
 
-void UIScene::menuCloseCallback(Object* pSender, TouchEventType type)
+void UIScene::menuCloseCallback(Ref* pSender, TouchEventType type)
 {
     if (type == TOUCH_EVENT_ENDED)
     {
@@ -67,7 +67,7 @@ void UIScene::menuCloseCallback(Object* pSender, TouchEventType type)
     }
 }
 
-void UIScene::toCocosGUITestScene(Object* sender, TouchEventType type)
+void UIScene::toCocosGUITestScene(Ref* sender, TouchEventType type)
 {
     if (type == TOUCH_EVENT_ENDED)
     {
@@ -79,7 +79,7 @@ void UIScene::toCocosGUITestScene(Object* sender, TouchEventType type)
     }
 }
 
-void UIScene::previousCallback(Object* sender, TouchEventType type)
+void UIScene::previousCallback(Ref* sender, TouchEventType type)
 {
     if (type == TOUCH_EVENT_ENDED)
     {
@@ -87,7 +87,7 @@ void UIScene::previousCallback(Object* sender, TouchEventType type)
     }
 }
 
-void UIScene::restartCallback(Object* sender, TouchEventType type)
+void UIScene::restartCallback(Ref* sender, TouchEventType type)
 {
     if (type == TOUCH_EVENT_ENDED)
     {
@@ -95,7 +95,7 @@ void UIScene::restartCallback(Object* sender, TouchEventType type)
     }
 }
 
-void UIScene::nextCallback(Object* sender, TouchEventType type)
+void UIScene::nextCallback(Ref* sender, TouchEventType type)
 {
     if (type == TOUCH_EVENT_ENDED)
     {

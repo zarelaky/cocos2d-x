@@ -9,7 +9,7 @@
 
 using namespace cocos2d;
 using namespace cocostudio;
-using namespace gui;
+using namespace ui;
 
 Layer *Next();
 Layer *Back();
@@ -101,7 +101,7 @@ void SceneEditorTestScene::runThisTest()
     CCDirector::getInstance()->replaceScene(this);
 }
 
-void SceneEditorTestScene::MainMenuCallback(Object *pSender)
+void SceneEditorTestScene::MainMenuCallback(Ref *pSender)
 {
     removeAllChildren();
 }
@@ -170,7 +170,7 @@ std::string SceneEditorTestLayer::subtitle()
     return "";
 }
 
-void SceneEditorTestLayer::restartCallback(Object *pSender)
+void SceneEditorTestLayer::restartCallback(Ref *pSender)
 {
     Scene *s = new SceneEditorTestScene();
     s->addChild(Restart());
@@ -178,7 +178,7 @@ void SceneEditorTestLayer::restartCallback(Object *pSender)
     s->release();
 }
 
-void SceneEditorTestLayer::nextCallback(Object *pSender)
+void SceneEditorTestLayer::nextCallback(Ref *pSender)
 {
     Scene *s = new SceneEditorTestScene();
     s->addChild(Next());
@@ -186,7 +186,7 @@ void SceneEditorTestLayer::nextCallback(Object *pSender)
     s->release();
 }
 
-void SceneEditorTestLayer::backCallback(Object *pSender)
+void SceneEditorTestLayer::backCallback(Ref *pSender)
 {
     Scene *s = new SceneEditorTestScene();
     s->addChild(Back());
@@ -397,14 +397,14 @@ cocos2d::Node* UIComponentTest::createGameScene()
 	_node = node;
 	
     ComRender *render = static_cast<ComRender*>(_node->getChildByTag(10025)->getComponent("GUIComponent"));
-	Widget* widget = static_cast<cocos2d::gui::Widget*>(render->getNode());
+	Widget* widget = static_cast<cocos2d::ui::Widget*>(render->getNode());
 	Button* button = static_cast<Button*>(widget->getChildByName("Button_156"));
 	button->addTouchEventListener(this, toucheventselector(UIComponentTest::touchEvent));
 
     return node;
 }
 
-void UIComponentTest::touchEvent(Object *pSender, TouchEventType type)
+void UIComponentTest::touchEvent(Ref *pSender, TouchEventType type)
 {
 	switch (type)
 	{

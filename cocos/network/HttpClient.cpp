@@ -214,7 +214,9 @@ void HttpClient::networkThread()
         s_responseQueue->pushBack(response);
         s_responseQueueMutex.unlock();
         
-        scheduler->performFunctionInCocosThread(CC_CALLBACK_0(HttpClient::dispatchResponseCallbacks, this));
+        if (nullptr != s_pHttpClient) {
+            scheduler->performFunctionInCocosThread(CC_CALLBACK_0(HttpClient::dispatchResponseCallbacks, this));
+        }
     }
     
     // cleanup: if worker thread received quit signal, clean up un-completed request queue
@@ -495,7 +497,7 @@ void HttpClient::dispatchResponseCallbacks()
     if (response)
     {
         HttpRequest *request = response->getHttpRequest();
-        Object *pTarget = request->getTarget();
+        Ref* pTarget = request->getTarget();
         SEL_HttpResponse pSelector = request->getSelector();
 
         if (pTarget && pSelector) 

@@ -33,11 +33,11 @@ public:
     UITextFieldTest();
     ~UITextFieldTest();
     bool init();
-    void textFieldEvent(Object* pSender, TextFiledEventType type);    
+    void textFieldEvent(Ref* pSender, TextFiledEventType type);    
     
 protected:
     UI_SCENE_CREATE_FUNC(UITextFieldTest)
-    gui::Text* _displayValueLabel;
+    ui::Text* _displayValueLabel;
 };
 
 class UITextFieldTest_MaxLength : public UIScene
@@ -46,11 +46,11 @@ public:
     UITextFieldTest_MaxLength();
     ~UITextFieldTest_MaxLength();
     bool init();
-    void textFieldEvent(Object* pSender, TextFiledEventType type);
+    void textFieldEvent(Ref* pSender, TextFiledEventType type);
     
 protected:
     UI_SCENE_CREATE_FUNC(UITextFieldTest_MaxLength)
-    gui::Text* _displayValueLabel;
+    ui::Text* _displayValueLabel;
 };
 
 class UITextFieldTest_Password : public UIScene
@@ -59,10 +59,10 @@ public:
     UITextFieldTest_Password();
     ~UITextFieldTest_Password();
     bool init();
-    void textFieldEvent(Object* pSender, TextFiledEventType type);
+    void textFieldEvent(Ref* pSender, TextFiledEventType type);
     
 protected:
     UI_SCENE_CREATE_FUNC(UITextFieldTest_Password)
-    gui::Text* _displayValueLabel;
+    ui::Text* _displayValueLabel;
 };
 #endif /* defined(__TestCpp__UITextFieldTest__) */

@@ -33,11 +33,11 @@ public:
     UIListViewTest_Vertical();
     ~UIListViewTest_Vertical();
     bool init();
-    void selectedItemEvent(Object* pSender, ListViewEventType type);
+    void selectedItemEvent(Ref* pSender, ListViewEventType type);
     
 protected:
     UI_SCENE_CREATE_FUNC(UIListViewTest_Vertical)
-    gui::Text* _displayValueLabel;
+    ui::Text* _displayValueLabel;
     
     std::vector<std::string> _array;
 };
@@ -48,11 +48,11 @@ public:
     UIListViewTest_Horizontal();
     ~UIListViewTest_Horizontal();
     bool init();
-    void selectedItemEvent(Object* pSender, ListViewEventType type);
+    void selectedItemEvent(Ref* pSender, ListViewEventType type);
     
 protected:
     UI_SCENE_CREATE_FUNC(UIListViewTest_Horizontal)
-    gui::Text* _displayValueLabel;
+    ui::Text* _displayValueLabel;
     
     std::vector<std::string> _array;
 };

@@ -33,11 +33,11 @@ public:
     UISliderTest();
     ~UISliderTest();
     bool init();
-    void sliderEvent(Object* pSender, SliderEventType type);
+    void sliderEvent(Ref* pSender, SliderEventType type);
     
 protected:
     UI_SCENE_CREATE_FUNC(UISliderTest)
-    gui::Text* _displayValueLabel;
+    ui::Text* _displayValueLabel;
 };
 
 class UISliderTest_Scale9 : public UIScene
@@ -46,11 +46,11 @@ public:
     UISliderTest_Scale9();
     ~UISliderTest_Scale9();
     bool init();
-    void sliderEvent(Object* pSender, SliderEventType type);
+    void sliderEvent(Ref* pSender, SliderEventType type);
     
 protected:
     UI_SCENE_CREATE_FUNC(UISliderTest_Scale9)
-    gui::Text* _displayValueLabel;
+    ui::Text* _displayValueLabel;
 };
 
 #endif /* defined(__TestCpp__UISliderTest__) */

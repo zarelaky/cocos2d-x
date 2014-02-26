@@ -33,11 +33,11 @@ public:
     UIButtonTest();
     ~UIButtonTest();
     bool init();
-    void touchEvent(Object *pSender, TouchEventType type);
+    void touchEvent(Ref *pSender, TouchEventType type);
 
 protected:
     UI_SCENE_CREATE_FUNC(UIButtonTest)
-    gui::Text* _displayValueLabel;
+    ui::Text* _displayValueLabel;
 };
 
 class UIButtonTest_Scale9 : public UIScene
@@ -46,11 +46,11 @@ public:
     UIButtonTest_Scale9();
     ~UIButtonTest_Scale9();
     bool init();
-    void touchEvent(Object *pSender, TouchEventType type);    
+    void touchEvent(Ref *pSender, TouchEventType type);    
     
 protected:
     UI_SCENE_CREATE_FUNC(UIButtonTest_Scale9)
-    gui::Text* _displayValueLabel;
+    ui::Text* _displayValueLabel;
 };
 
 class UIButtonTest_PressedAction : public UIScene
@@ -59,11 +59,11 @@ public:
     UIButtonTest_PressedAction();
     ~UIButtonTest_PressedAction();
     bool init();
-    void touchEvent(Object *pSender, TouchEventType type);    
+    void touchEvent(Ref *pSender, TouchEventType type);    
     
 protected:
     UI_SCENE_CREATE_FUNC(UIButtonTest_PressedAction)
-    gui::Text* _displayValueLabel;
+    ui::Text* _displayValueLabel;
 };
 
 class UIButtonTest_Title : public UIScene
@@ -72,11 +72,11 @@ public:
     UIButtonTest_Title();
     ~UIButtonTest_Title();
     bool init();
-    void touchEvent(Object *pSender, TouchEventType type);
+    void touchEvent(Ref *pSender, TouchEventType type);
     
 protected:
     UI_SCENE_CREATE_FUNC(UIButtonTest_Title)
-    gui::Text* _displayValueLabel;
+    ui::Text* _displayValueLabel;
 };
 
 #endif /* defined(__TestCpp__UIButtonTest__) */

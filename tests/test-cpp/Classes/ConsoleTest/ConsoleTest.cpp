@@ -27,6 +27,7 @@
 
 #if (CC_TARGET_PLATFORM != CC_PLATFORM_WIN32)
 #include <unistd.h>
+#include <sys/socket.h>
 #else
 #include <io.h>
 #endif
@@ -92,7 +93,7 @@ void BaseTestConsole::onEnter()
     BaseTest::onEnter();
 }
 
-void BaseTestConsole::restartCallback(Object* sender)
+void BaseTestConsole::restartCallback(Ref* sender)
 {
     auto s = new ConsoleTestScene();
     s->addChild(restartConsoleTest());
@@ -101,7 +102,7 @@ void BaseTestConsole::restartCallback(Object* sender)
     s->release();
 }
 
-void BaseTestConsole::nextCallback(Object* sender)
+void BaseTestConsole::nextCallback(Ref* sender)
 {
     auto s = new ConsoleTestScene();
     s->addChild( nextConsoleTest() );
@@ -109,7 +110,7 @@ void BaseTestConsole::nextCallback(Object* sender)
     s->release();
 }
 
-void BaseTestConsole::backCallback(Object* sender)
+void BaseTestConsole::backCallback(Ref* sender)
 {
     auto s = new ConsoleTestScene();
     s->addChild( backConsoleTest() );
@@ -165,14 +166,12 @@ std::string ConsoleTCP::subtitle() const
 
 ConsoleCustomCommand::ConsoleCustomCommand()
 {
-    _console = Director::getInstance()->getConsole();
-
     static struct Console::Command commands[] = {
         {"hello", "This is just a user generated command", [](int fd, const std::string& args) {
             const char msg[] = "how are you?\nArguments passed: ";
-            write(fd, msg, sizeof(msg));
-            write(fd, args.c_str(), args.length());
-            write(fd, "\n",1);
+            send(fd, msg, sizeof(msg),0);
+            send(fd, args.c_str(), args.length(),0);
+            send(fd, "\n",1,0);
         }},
     };
     _console->addCommand(commands[0]);

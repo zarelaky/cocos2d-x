@@ -21,7 +21,7 @@ bool UIButtonTest::init()
         Size widgetSize = _widget->getSize();
         
         // Add a label in which the button events will be displayed
-        _displayValueLabel = gui::Text::create();
+        _displayValueLabel = ui::Text::create();
         _displayValueLabel->setText("No Event");
         _displayValueLabel->setFontName("Marker Felt");
         _displayValueLabel->setFontSize(32);
@@ -30,7 +30,7 @@ bool UIButtonTest::init()
         _uiLayer->addChild(_displayValueLabel);        
         
         // Add the alert
-        gui::Text* alert = gui::Text::create();
+        ui::Text* alert = ui::Text::create();
         alert->setText("Button");
         alert->setFontName("Marker Felt");
         alert->setFontSize(30);        
@@ -52,23 +52,23 @@ bool UIButtonTest::init()
     return false;
 }
 
-void UIButtonTest::touchEvent(Object *pSender, TouchEventType type)
+void UIButtonTest::touchEvent(Ref *pSender, TouchEventType type)
 {
     switch (type)
     {
-        case gui::TOUCH_EVENT_BEGAN:
+        case ui::TOUCH_EVENT_BEGAN:
             _displayValueLabel->setText(String::createWithFormat("Touch Down")->getCString());
             break;
             
-        case gui::TOUCH_EVENT_MOVED:
+        case ui::TOUCH_EVENT_MOVED:
             _displayValueLabel->setText(String::createWithFormat("Touch Move")->getCString());
             break;
             
-        case gui::TOUCH_EVENT_ENDED:
+        case ui::TOUCH_EVENT_ENDED:
             _displayValueLabel->setText(String::createWithFormat("Touch Up")->getCString());
             break;
             
-        case gui::TOUCH_EVENT_CANCELED:
+        case ui::TOUCH_EVENT_CANCELED:
             _displayValueLabel->setText(String::createWithFormat("Touch Cancelled")->getCString());
             break;
             
@@ -97,7 +97,7 @@ bool UIButtonTest_Scale9::init()
         Size widgetSize = _widget->getSize();
         
         // Add a label in which the button events will be displayed
-        _displayValueLabel = gui::Text::create();
+        _displayValueLabel = ui::Text::create();
         _displayValueLabel->setText("No Event");
         _displayValueLabel->setFontName("Marker Felt");
         _displayValueLabel->setFontSize(32);
@@ -106,7 +106,7 @@ bool UIButtonTest_Scale9::init()
         _uiLayer->addChild(_displayValueLabel);
         
         // Add the alert
-        gui::Text* alert = gui::Text::create();
+        ui::Text* alert = ui::Text::create();
         alert->setText("Button scale9 render");
         alert->setFontName("Marker Felt");
         alert->setFontSize(30);
@@ -130,23 +130,23 @@ bool UIButtonTest_Scale9::init()
     return false;
 }
 
-void UIButtonTest_Scale9::touchEvent(Object *pSender, TouchEventType type)
+void UIButtonTest_Scale9::touchEvent(Ref *pSender, TouchEventType type)
 {
     switch (type)
     {
-        case gui::TOUCH_EVENT_BEGAN:
+        case ui::TOUCH_EVENT_BEGAN:
             _displayValueLabel->setText(String::createWithFormat("Touch Down")->getCString());
             break;
             
-        case gui::TOUCH_EVENT_MOVED:
+        case ui::TOUCH_EVENT_MOVED:
             _displayValueLabel->setText(String::createWithFormat("Touch Move")->getCString());
             break;
             
-        case gui::TOUCH_EVENT_ENDED:
+        case ui::TOUCH_EVENT_ENDED:
             _displayValueLabel->setText(String::createWithFormat("Touch Up")->getCString());
             break;
             
-        case gui::TOUCH_EVENT_CANCELED:
+        case ui::TOUCH_EVENT_CANCELED:
             _displayValueLabel->setText(String::createWithFormat("Touch Cancelled")->getCString());
             break;
             
@@ -172,7 +172,7 @@ bool UIButtonTest_PressedAction::init()
         Size widgetSize = _widget->getSize();
         
         // Add a label in which the button events will be displayed
-        _displayValueLabel = gui::Text::create();
+        _displayValueLabel = ui::Text::create();
         _displayValueLabel->setText("No Event");
         _displayValueLabel->setFontName("Marker Felt");
         _displayValueLabel->setFontSize(32);
@@ -181,7 +181,7 @@ bool UIButtonTest_PressedAction::init()
         _uiLayer->addChild(_displayValueLabel);
         
         // Add the alert
-        gui::Text* alert = gui::Text::create();
+        ui::Text* alert = ui::Text::create();
         alert->setText("Button Pressed Action");
         alert->setFontName("Marker Felt");
         alert->setFontSize(30);
@@ -204,23 +204,23 @@ bool UIButtonTest_PressedAction::init()
     return false;
 }
 
-void UIButtonTest_PressedAction::touchEvent(Object *pSender, TouchEventType type)
+void UIButtonTest_PressedAction::touchEvent(Ref *pSender, TouchEventType type)
 {
     switch (type)
     {
-        case gui::TOUCH_EVENT_BEGAN:
+        case ui::TOUCH_EVENT_BEGAN:
             _displayValueLabel->setText(String::createWithFormat("Touch Down")->getCString());
             break;
             
-        case gui::TOUCH_EVENT_MOVED:
+        case ui::TOUCH_EVENT_MOVED:
             _displayValueLabel->setText(String::createWithFormat("Touch Move")->getCString());
             break;
             
-        case gui::TOUCH_EVENT_ENDED:
+        case ui::TOUCH_EVENT_ENDED:
             _displayValueLabel->setText(String::createWithFormat("Touch Up")->getCString());
             break;
             
-        case gui::TOUCH_EVENT_CANCELED:
+        case ui::TOUCH_EVENT_CANCELED:
             _displayValueLabel->setText(String::createWithFormat("Touch Cancelled")->getCString());
             break;
             
@@ -247,7 +247,7 @@ bool UIButtonTest_Title::init()
         Size widgetSize = _widget->getSize();
         
         // Add a label in which the text button events will be displayed
-        _displayValueLabel = gui::Text::create();
+        _displayValueLabel = ui::Text::create();
         _displayValueLabel->setText("No Event");
         _displayValueLabel->setFontName("Marker Felt");
         _displayValueLabel->setFontSize(32);
@@ -256,7 +256,7 @@ bool UIButtonTest_Title::init()
         _uiLayer->addChild(_displayValueLabel);
         
         // Add the alert
-        gui::Text* alert = gui::Text::create();
+        ui::Text* alert = ui::Text::create();
         alert->setText("Button with title");
         alert->setFontName("Marker Felt");
         alert->setFontSize(30);
@@ -279,7 +279,7 @@ bool UIButtonTest_Title::init()
 }
 
 
-void UIButtonTest_Title::touchEvent(Object *pSender, TouchEventType type)
+void UIButtonTest_Title::touchEvent(Ref *pSender, TouchEventType type)
 {
     switch (type)
     {
